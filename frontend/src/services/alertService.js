@@ -16,6 +16,8 @@ const showError = (error) =>
     icon: "error",
     title: "เกิดข้อผิดพลาด",
     text: getErrorMessage(error),
+    confirmButtonText: "ตกลง",
+    confirmButtonColor: "#3b82f6",
   });
 
 const showSuccess = (title, text) =>
@@ -23,18 +25,20 @@ const showSuccess = (title, text) =>
     icon: "success",
     title,
     text,
-    timer: 1600,
+    timer: 1500,
     showConfirmButton: false,
   });
 
 const confirmDelete = () =>
   Swal.fire({
     icon: "warning",
-    title: "ยืนยันการลบข่าว",
-    text: "คุณต้องการลบรายการข่าวนี้ใช่หรือไม่?",
+    title: "ยืนยันการลบข่าวสาร",
+    text: "คุณแน่ใจหรือไม่ว่าต้องการลบรายการข่าวนี้? การกระทำนี้ไม่สามารถย้อนกลับได้",
     showCancelButton: true,
-    confirmButtonText: "ลบข่าว",
+    confirmButtonText: "ยืนยันการลบ",
     cancelButtonText: "ยกเลิก",
+    confirmButtonColor: "#ef4444",
+    cancelButtonColor: "#64748b",
     reverseButtons: true,
   }).then((result) => result.isConfirmed);
 
