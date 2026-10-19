@@ -1,6 +1,10 @@
-import { Calendar, Newspaper, Pencil, Trash2, User } from "lucide-react";
+import { useState } from "react";
+import { Calendar, Eye, Newspaper, Pencil, Trash2, User } from "lucide-react";
+import NewsDetailModal from "./NewsDetailModal";
 
 const NewsList = ({ newsAll = [], onEdit, onDelete }) => {
+  const [selectedNews, setSelectedNews] = useState(null);
+
   if (!newsAll || newsAll.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-base-300 bg-base-100/60 p-12 text-center shadow-xs">
@@ -87,9 +91,14 @@ const NewsList = ({ newsAll = [], onEdit, onDelete }) => {
           return (
             <article
               key={news.id}
-              className="group flex flex-col justify-between rounded-2xl border border-base-200/90 bg-base-100 p-5 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
+              className="group flex flex-col justify-between rounded-2xl border border-base-200/90 bg-base-100 p-5 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
             >
-              <div>
+              {/* ส่วนคลิกเพื่อดูรายละเอียดข่าว */}
+              <div
+                className="cursor-pointer"
+                onClick={() => setSelectedNews(news)}
+                title="คลิกเพื่อดูรายละเอียดข่าว"
+              >
                 {/* แถบหมวดหมู่ และ สถานะ */}
                 <div className="flex items-center justify-between gap-2">
                   <span
@@ -145,32 +154,52 @@ const NewsList = ({ newsAll = [], onEdit, onDelete }) => {
                   </div>
                 </div>
 
-                {/* ปุ่มจัดการข่าว: แก้ไข และ ลบ */}
-                <div className="mt-4 flex items-center justify-end gap-1.5 border-t border-base-200/70 pt-3">
+                {/* ปุ่มจัดการข่าว: ดูรายละเอียด, แก้ไข, ลบ */}
+                <div className="mt-4 flex items-center justify-between border-t border-base-200/70 pt-3">
                   <button
                     type="button"
-                    className="btn btn-ghost btn-xs gap-1 rounded-lg text-xs font-normal text-base-content/75 hover:bg-primary/10 hover:text-primary"
-                    onClick={() => onEdit(news)}
-                    aria-label={`แก้ไขข่าว ${news.title}`}
+                    className="btn btn-ghost btn-xs gap-1 rounded-lg text-xs font-normal text-primary hover:bg-primary/10"
+                    onClick={() => setSelectedNews(news)}
+                    aria-label={`ดูรายละเอียดข่าว ${news.title}`}
                   >
-                    <Pencil className="size-3.5" />
-                    <span>แก้ไข</span>
+                    <Eye className="size-3.5" />
+                    <span>ดูข่าว</span>
                   </button>
-                  <button
-                    type="button"
-                    className="btn btn-ghost btn-xs gap-1 rounded-lg text-xs font-normal text-error/80 hover:bg-error/10 hover:text-error"
-                    onClick={() => onDelete(news.id)}
-                    aria-label={`ลบข่าว ${news.title}`}
-                  >
-                    <Trash2 className="size-3.5" />
-                    <span>ลบ</span>
-                  </button>
+
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      className="btn btn-ghost btn-xs gap-1 rounded-lg text-xs font-normal text-base-content/75 hover:bg-primary/10 hover:text-primary"
+                      onClick={() => onEdit(news)}
+                      aria-label={`แก้ไขข่าว ${news.title}`}
+                    >
+                      <Pencil className="size-3.5" />
+                      <span>แก้ไข</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-ghost btn-xs gap-1 rounded-lg text-xs font-normal text-error/80 hover:bg-error/10 hover:text-error"
+                      onClick={() => onDelete(news.id)}
+                      aria-label={`ลบข่าว ${news.title}`}
+                    >
+                      <Trash2 className="size-3.5" />
+                      <span>ลบ</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
           );
         })}
       </div>
+
+      {/* Modal แสดงรายละเอียดข่าว */}
+      <NewsDetailModal
+        news={selectedNews}
+        onClose={() => setSelectedNews(null)}
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
     </section>
   );
 };
