@@ -114,7 +114,7 @@ function NewsForm({
                 onStatusChange(event.target.value === "true")
               }
             >
-              <option value="true">เผยแพร่แล้ว (Published)</option>
+              <option value="true">เผยแพร่ (Published)</option>
               <option value="false">ฉบับร่าง (Draft)</option>
             </select>
           </label>
