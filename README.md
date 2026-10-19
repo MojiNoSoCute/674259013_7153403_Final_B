@@ -67,8 +67,30 @@ docker compose up -d
 ## ข้อมูลการเชื่อมต่อระบบ (Deployment Links & Base URL)
 
 - **Frontend (Vercel):** [https://674259013-7153403-final-b.vercel.app](https://674259013-7153403-final-b.vercel.app)
+
+  ![Vercel Deployment](./image/vercel.png)
+
 - **Backend API (Render - Production):** [https://six74259013-7153403-final-b.onrender.com](https://six74259013-7153403-final-b.onrender.com)
+
+  ![Render Deployment](./image/render.png)
+
 - **Backend API (Local Development):** `http://localhost:5000`
+
+---
+
+## ภาพตัวอย่างหน้าจอระบบ (Application Screenshots)
+
+### 1. หน้าแสดงรายการข่าวสาร (News List, Search & Filter)
+![หน้าแสดงรายการข่าวสาร](./image/รายการข้อมูล.png)
+
+### 2. หน้าฟอร์มเพิ่มข้อมูลข่าวสารใหม่ (Create News)
+![หน้าฟอร์มเพิ่มข้อมูลข่าวสารใหม่](./image/เพิ่มข้อมูล.png)
+
+### 3. หน้าฟอร์มแก้ไขข้อมูลข่าวสาร (Edit News)
+![หน้าฟอร์มแก้ไขข้อมูลข่าวสาร](./image/แก้ไขข้อมูล.png)
+
+### 4. ป๊อปอัปแจ้งเตือนและยืนยันการลบข่าวสาร (Delete Confirmation)
+![การแจ้งเตือนยืนยันการลบข่าวสาร](./image/ยืนยันการลบ.png)
 
 ---
 
